@@ -3,7 +3,7 @@
 //constr & destr
 Form::Form() : _name("default"), _signed(false), _gradeSign(0), _gradeExec(0)
 {
-
+	std::cout << "defaut" << std::endl;
 }
 Form::Form(const std::string name, const int gradeS, const int gradeE) : _name(name), _gradeSign(gradeS), _gradeExec(gradeE)
 {
@@ -19,8 +19,8 @@ Form::Form(const std::string name, const int gradeS, const int gradeE) : _name(n
 
 Form::Form ( const Form &copy ) : _name(copy._name), _gradeSign(copy._gradeSign), _gradeExec(copy._gradeExec)
 {
-    std::cout << bGREEN << "Constructor (copy) called - Form " << RESET << std::endl;
     *this = copy;
+	std::cout << bGREEN << "Constructor (copy) called - Form " << RESET << std::endl;
 }
 
 Form &Form::operator=( const Form &autre )
@@ -63,9 +63,16 @@ int Form::getGradeE() const
 
 
 
-void Form::beSigned(Bureaucrat bubu)
+void Form::beSigned(Bureaucrat &bubu)
 {
+	// if bubu.signed == 1
+	// {
 
+	// }
+	if (bubu.getGrade() <= _gradeSign)
+		_signed = 1;
+	else
+		throw GradeTooLowException();
 }
 
 
@@ -91,6 +98,6 @@ const char * Form::GradeTooLowException::what() const throw()
 //surcharge doperateur global
 std::ostream &operator<<(std::ostream &o, Form const &i)
 {
-	o << "Form name : " << i.getName() << "; signed? " << i.getSigned() << " gradeS : " << i.getGradeS() << "; gradeE : " << i.getGradeE() << ".";
+	o << i.getName() << ", signed " << i.getSigned() << ", gradeS " << i.getGradeS() << ", gradeE " << i.getGradeE() << "." << std::endl;
 	return o;
 }

@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "Form.hpp"
+
 #define bRED "\033[1;31m"
 #define bGREEN "\033[1;32m"
 #define bBLUE "\033[1;34m"
@@ -32,7 +34,7 @@ class Bureaucrat
 		//fonctions membres
 		void incrementGrade();
 		void decrementGrade();
-		void signForm(Form&);
+		void signForm(Form &formulaire);
 
 		class GradeTooHighException : public std::exception
 		{

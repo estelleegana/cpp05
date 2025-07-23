@@ -65,6 +65,20 @@ void Bureaucrat::decrementGrade()
 		throw GradeTooLowException();
 }
 
+void Bureaucrat::signForm(Form &formulaire)
+{
+	try
+	{
+		formulaire.beSigned(*this);
+		std::cout << this->getName() << " signed " << formulaire.getName() << std::endl;
+	}
+	catch(const std::exception &e)
+	{
+		std::cout << this->getName() << " couldn't sign " << formulaire.getName() << " because " << e.what() << "." << std::endl;	
+	}
+}
+
+
 
 
 
@@ -87,9 +101,10 @@ const char * Bureaucrat::GradeTooLowException::what() const throw()
 
 
 
+
 //surcharge doperateur global
 std::ostream &operator<<(std::ostream &o, Bureaucrat const &i)
 {
-	o << i.getName() << ", bureaucrat grade " << i.getGrade() << ".";
+	o << i.getName() << ", bureaucrat grade " << i.getGrade() << "." << std::endl;
 	return o;
 }
