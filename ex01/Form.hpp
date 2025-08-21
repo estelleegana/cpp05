@@ -1,6 +1,5 @@
-//#pragma once
-#ifndef FORM_HPP
-#define FORM_HPP
+#pragma once
+
 #include <iostream>
 #include <string>
 
@@ -12,7 +11,7 @@
 #define bold "\033[1m"
 #define RESET "\033[0m"
 
-class Bureaucrat;
+// class Bureaucrat; (car y a deja "#include "Bureaucrat.hpp"")
 
 class Form
 {

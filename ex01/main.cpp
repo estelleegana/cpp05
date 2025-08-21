@@ -1,57 +1,89 @@
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-void    sectionTitle(const std::string& title) {
-    std::cout    << std::endl
-                << "			** " << title << " ***"
-                << std::endl;
-}
-
-void    printError(std::exception& e) {
-    std::cout << "Error: " << e.what() << std::endl;
-}
-
-int    main()
+int main(void)
 {
-    Bureaucrat    burro("burro", 42);
-    std::cout << burro;
+	std::cout << "\033[33m" << std::endl << "Test too high and too low creation" << "\033[0m" << std::endl;
+	try
+	{
+		Bureaucrat Sleeper1("Bernd", 1500);
+	}
+	catch(const std::exception &e)
+	{
+		std::cerr << "Exception caught: " << e.what() << std::endl;
+	}
+
+	try
+	{
+		Bureaucrat Sleeper2("Olaf", -10);
+	}
+	catch(const std::exception &e)
+	{
+		std::cerr << "Exception caught: " << e.what() << std::endl;
+	}
+
+
+	std::cout << "\033[33m" << std::endl << "Test increasing" << "\033[0m" << std::endl;
+	Bureaucrat bob("Bob", 2);
+	std::cout << bob;
+	try
+	{
+		bob.incrementGrade();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Exception caught: " << e.what() << std::endl;
+	}
+	std::cout << bob;
 	
-    // sectionTitle("constructor");
-    // try {
-    //     Form    Formaccio("Formaccio", 1000, 1);
-    // }
-    // catch (std::exception& e) {
-    //     printError(e);
-    // }
-    // try {
-    //     Form    Formaccio("Formaccio", 42, 0);
-    // }
-    // catch (std::exception& e) {
-    //     printError(e);
-    // }
+	try
+	{
+		bob.incrementGrade();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Exception caught: " << e.what() << std::endl;
+	}
+	std::cout << bob;
 
-    sectionTitle("sign");
-    try {
-        Form    Formino("Formino", 42, 42);
-        Form    Formone("Formone", 1, 1);
-        std::cout << Formino << Formone;
 
-        burro.signForm(Formino);
-        std::cout << Formino;
-        burro.signForm(Formino);
 
-        sectionTitle("grade too low");
-        burro.signForm(Formone);
-    }
-    catch (std::exception& e) {
-        printError(e);
-    }
+	std::cout << "\033[33m" << std::endl << "Test decreasing" << "\033[0m" << std::endl;
+	Bureaucrat tim("Tim", 149);
+	std::cout << tim;
+	try
+	{
+		tim.decrementGrade();
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << "Exception caught: " << e.what() << std::endl;
+	}
+	std::cout << tim;
+	
+	try
+	{
+	tim.decrementGrade();
+	}
+	catch(const std::exception& e)
+	{
+	std::cerr << "Exception caught: " << e.what() << std::endl;
+	}
+	std::cout << tim;
 
-    sectionTitle("grade too high");
-    try {
-        Bureaucrat bob("Bob", -13);
-    }
-    catch (std::exception& e) {
-        printError(e);
-    }
+
+	std::cout << "\033[33m" << std::endl << "Test ex01" << "\033[0m" << std::endl;
+
+	Form id_form("ID FORM", 100, 90);
+	Bureaucrat mr_slow;
+	Bureaucrat mr_id("MR_ID", 100);
+	std::cout << id_form;
+	
+	mr_slow.signForm(id_form);
+	std::cout << id_form;
+
+	mr_id.signForm(id_form);
+	std::cout << id_form;
+	
+	return (0);
 }

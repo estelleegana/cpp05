@@ -1,6 +1,9 @@
 #include "Bureaucrat.hpp"
 
 //constr & destr
+Bureaucrat::Bureaucrat()
+{}
+
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
 	if (grade <= 150 && grade >= 1)

@@ -3,7 +3,7 @@
 //constr & destr
 Form::Form() : _name("default"), _signed(false), _gradeSign(0), _gradeExec(0)
 {
-	std::cout << "defaut" << std::endl;
+	std::cout << "default no param" << std::endl;
 }
 Form::Form(const std::string name, const int gradeS, const int gradeE) : _name(name), _gradeSign(gradeS), _gradeExec(gradeE)
 {
@@ -65,10 +65,6 @@ int Form::getGradeE() const
 
 void Form::beSigned(Bureaucrat &bubu)
 {
-	// if bubu.signed == 1
-	// {
-
-	// }
 	if (bubu.getGrade() <= _gradeSign)
 		_signed = 1;
 	else

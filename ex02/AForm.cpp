@@ -1,0 +1,114 @@
+#include "AForm.hpp"
+
+AForm::AForm() : _name("default"), _signed(false), _gradeSign(0), _gradeExec(0)
+{
+	std::cout << "default no param" << std::endl;
+}
+AForm::AForm(const std::string name, const int gradeS, const int gradeE) : _name(name), _gradeSign(gradeS), _gradeExec(gradeE)
+{
+	if (_gradeSign < 1 || _gradeExec < 1)
+		throw GradeTooHighException();
+	else if (_gradeSign > 150 || _gradeExec > 150)
+		throw GradeTooLowException();
+
+	_signed = false;
+
+	std::cout << bGREEN << "Constructor (default) called - AForm " << RESET << std::endl;
+}
+
+AForm::AForm ( const AForm &copy ) : _name(copy._name), _gradeSign(copy._gradeSign), _gradeExec(copy._gradeExec)
+{
+    *this = copy;
+	std::cout << bGREEN << "Constructor (copy) called - AForm " << RESET << std::endl;
+}
+
+AForm &AForm::operator=( const AForm &autre )
+{
+	_signed = autre.getSigned();
+    std::cout << bBLUE << "Copy assignment operator called - AForm" << RESET << std::endl;
+    return (*this);
+}
+
+AForm::~AForm()
+{
+    std::cout << bRED << "Destructor called - AForm " << RESET << std::endl;
+}
+
+
+
+
+
+
+
+//getter
+std::string AForm::getName() const
+{
+	return (_name);
+}
+
+bool AForm::getSigned() const
+{
+	return (_signed);
+}
+
+int AForm::getGradeS() const
+{
+	return (_gradeSign);
+}
+
+int AForm::getGradeE() const
+{
+	return (_gradeExec);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//fonctions membres
+void AForm::beSigned(Bureaucrat &bubu)
+{
+	if (bubu.getGrade() <= _gradeSign)
+		_signed = 1;
+	else
+		throw GradeTooLowException();
+}
+
+void AForm::execute(Bureaucrat const & executor) const
+{}
+
+
+
+
+
+
+
+//exceptions
+const char * AForm::GradeTooHighException::what() const throw()
+{
+	return (bold "GradeTooHighException"RESET);
+}
+
+const char * AForm::GradeTooLowException::what() const throw()
+{
+	return (bold "GradeTooLowException"RESET);
+}
+
+
+
+
+
+
+//surcharge doperateur global
+std::ostream &operator<<(std::ostream &o, AForm const &i)
+{
+	o << i.getName() << ", signed " << i.getSigned() << ", gradeS " << i.getGradeS() << ", gradeE " << i.getGradeE() << "." << std::endl;
+	return o;
+}
