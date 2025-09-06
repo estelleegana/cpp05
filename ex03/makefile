@@ -1,5 +1,5 @@
 #nom de l'executable
-NAME = ex02
+NAME = ex03
 
 #compilateur
 CC = c++
@@ -10,6 +10,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 #fichiers sources
 SRCS = AForm.cpp \
 	Bureaucrat.cpp \
+	Intern.cpp \
 	main.cpp \
 	PresidentialPardonForm.cpp \
 	RobotomyRequestForm.cpp \
