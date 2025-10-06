@@ -1,4 +1,5 @@
 #include "Form.hpp"
+#include "Bureaucrat.hpp"
 
 //constr & destr
 Form::Form() : _name("default"), _signed(false), _gradeSign(0), _gradeExec(0)

@@ -7,13 +7,16 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : _gradeExec(13
 
 	std::string filename = target + "_shrubbery";
 	std::ofstream fichier(filename.c_str());
-	fichier << "        *" << std::endl;
-	fichier << "       ***" << std::endl;
-	fichier << "      *****" << std::endl;
-	fichier << "     *******" << std::endl;
-	fichier << "    *********" << std::endl;
-	fichier << "       |||" << std::endl;
-	fichier << "       |||" << std::endl;
+	for (int i = 0; i < 2; i++)
+	{
+		fichier << "        *" << std::endl;
+		fichier << "       ***" << std::endl;
+		fichier << "      *****" << std::endl;
+		fichier << "     *******" << std::endl;
+		fichier << "    *********" << std::endl;
+		fichier << "       |||" << std::endl;
+		fichier << "       |||" << std::endl;
+	}
 	fichier.close();
 }
 

@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-#include "Bureaucrat.hpp"
+// #include "Bureaucrat.hpp"
 
 #define bRED "\033[1;31m"
 #define bGREEN "\033[1;32m"
@@ -11,7 +11,7 @@
 #define bold "\033[1m"
 #define RESET "\033[0m"
 
-// class Bureaucrat; (car y a deja "#include "Bureaucrat.hpp"")
+class Bureaucrat;
 
 class Form
 {
@@ -51,4 +51,3 @@ class Form
 };
 
 std::ostream &operator<<(std::ostream &o, Form const &i);
-#endif
