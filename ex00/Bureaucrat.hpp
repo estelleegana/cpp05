@@ -16,6 +16,7 @@ class Bureaucrat
 		int _grade;
 	public:
 		//const & destr
+		Bureaucrat();
 		Bureaucrat(std::string name, int grade);
 		Bureaucrat(const Bureaucrat &copy);
 		Bureaucrat &operator=(const Bureaucrat &autre);

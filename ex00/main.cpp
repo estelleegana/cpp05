@@ -5,6 +5,8 @@ int main()
 	try
 	{
 		Bureaucrat bo("bo", 146);
+		Bureaucrat copy(bo);
+		std::cout << copy << std::endl;
 		bo.decrementGrade();
 		std::cout << bo << std::endl;
 		bo.decrementGrade();
@@ -40,4 +42,8 @@ int main()
 	{
 		std::cout << e.what() << std::endl;
 	}
+	std::cout << std::endl;
+	
+	Bureaucrat def;
+	std::cout << def << std::endl;
 }

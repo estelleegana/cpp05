@@ -12,7 +12,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 		throw GradeTooHighException();
 	else if (grade > 150)
 		throw GradeTooLowException();
-	std::cout << bGREEN << "Constructor (default) called - Bureaucrat " << RESET << std::endl;
+	std::cout << bGREEN << "Constructor called - Bureaucrat " << RESET << "(name : " << _name << ", grade : " << _grade << ")" << std::endl;
 }
 
 Bureaucrat::Bureaucrat ( const Bureaucrat &copy )

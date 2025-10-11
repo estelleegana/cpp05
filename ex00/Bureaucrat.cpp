@@ -1,6 +1,12 @@
 #include "Bureaucrat.hpp"
 
 //constr & destr
+Bureaucrat::Bureaucrat() : _name("default"), _grade(150)
+{
+	std::cout << bGREEN << "Bureaucrat - Constructor default called " << RESET << "(name: " << _name << ", grade: " << _grade << ")" << std::endl;
+
+}
+
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
 	if (grade <= 150 && grade >= 1)
@@ -10,26 +16,25 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 	else if (grade > 150)
 		throw GradeTooLowException();
 	
-	std::cout << bGREEN << "Constructor (default) called " << RESET << _name << " " << _grade << std::endl;
+	std::cout << bGREEN << "Bureaucrat - Constructor called " << RESET << "(name: " << _name << ", grade: " << _grade << ")" << std::endl;
 }
 
-Bureaucrat::Bureaucrat ( const Bureaucrat &copy )
+Bureaucrat::Bureaucrat (const Bureaucrat  &copy ) : _name(copy.getName())
 {
-    std::cout << bGREEN << "Constructor (copy) called " << RESET << std::endl;
-    *this = copy;
+	*this = copy;
+    std::cout << bGREEN << "Bureaucrat - Constructor (copy) called " << RESET << "(name: " << _name << ", grade: " << _grade << ")" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=( const Bureaucrat &autre )
 {
-	// _name = autre._name;
 	_grade = autre._grade;
-    std::cout << bBLUE << "Copy assignment operator called" << RESET << std::endl;
+    std::cout << bBLUE << "Bureaucrat - Copy assignment operator= called" << RESET << std::endl;
     return (*this);
 }
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << bRED << "Destructor called " << RESET << std::endl;
+    std::cout << bRED << "Bureaucrat - Destructor called " << RESET << "(name: " << _name << ", grade: " << _grade << ")" << std::endl;
 }
 
 
