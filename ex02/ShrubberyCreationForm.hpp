@@ -11,7 +11,10 @@ class ShrubberyCreationForm : public AForm
 		int	_gradeExec;
 		int	_gradeSign;
 	public:
+		ShrubberyCreationForm();
 		ShrubberyCreationForm(std::string target);
+		ShrubberyCreationForm(const ShrubberyCreationForm &copy);
+		ShrubberyCreationForm &operator=(const ShrubberyCreationForm &autre);
 		~ShrubberyCreationForm();
 		AForm* clone() const;
 };

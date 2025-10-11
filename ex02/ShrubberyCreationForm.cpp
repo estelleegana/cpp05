@@ -1,5 +1,7 @@
 #include "ShrubberyCreationForm.hpp"
 
+ShrubberyCreationForm::ShrubberyCreationForm() {}
+
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : _gradeExec(137), _gradeSign(145)
 {
 	(void)_gradeExec;
@@ -19,6 +21,21 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : _gradeExec(13
 	}
 	fichier.close();
 }
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy)
+{
+	*this = copy;
+	std::cout << bGREEN << "Constructor (copy) called - ShrubberyCreationForm " << RESET << std::endl;
+}
+
+ShrubberyCreationForm &ShrubberyCreationForm::operator=( const ShrubberyCreationForm &autre )
+{
+	_gradeExec = autre._gradeExec;
+	_gradeSign = autre._gradeSign;
+    std::cout << bBLUE << "Copy assignment operator called - ShrubberyCreationForm" << RESET << std::endl;
+    return (*this);
+}
+
 
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {}

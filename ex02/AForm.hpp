@@ -25,7 +25,7 @@ class AForm
 		AForm(const std::string name, const int gradeS, const int gradeE);
 		AForm(const AForm &copy);
 		AForm &operator=(const AForm &autre);
-		~AForm();
+		virtual ~AForm();
 
 		//getters
 		std::string getName() const;

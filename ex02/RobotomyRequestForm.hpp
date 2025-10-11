@@ -12,7 +12,10 @@ class RobotomyRequestForm : public AForm
 		int	_gradeExec;
 		int	_gradeSign;
 	public:
+		RobotomyRequestForm();
 		RobotomyRequestForm(std::string target);
+		RobotomyRequestForm(const RobotomyRequestForm &copy);
+		RobotomyRequestForm &operator=(const RobotomyRequestForm &autre);
 		~RobotomyRequestForm();
 
 		AForm* clone() const;
