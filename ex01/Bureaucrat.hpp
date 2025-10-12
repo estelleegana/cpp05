@@ -3,22 +3,21 @@
 
 #include <iostream>
 
-#include "Form.hpp"
-
 #define bRED "\033[1;31m"
 #define bGREEN "\033[1;32m"
 #define bBLUE "\033[1;34m"
 #define bold "\033[1m"
 #define RESET "\033[0m"
 
-class Form;
+// class Form;
+
+#include "Form.hpp"
 
 class Bureaucrat
 {
 	private:
 		const std::string _name;
 		int _grade;
-
 	public:
 		//const & destr
 		Bureaucrat();

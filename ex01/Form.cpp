@@ -4,7 +4,7 @@
 //constr & destr
 Form::Form() : _name("default"), _signed(false), _gradeSign(0), _gradeExec(0)
 {
-	std::cout << "default no param" << std::endl;
+	std::cout << "Form - Constructor (default) " <<  RESET << "(name: " << _name << ", gradeSign: " << _gradeSign << ", gradeExec: " << _gradeExec << ")" << std::endl;
 }
 Form::Form(const std::string name, const int gradeS, const int gradeE) : _name(name), _gradeSign(gradeS), _gradeExec(gradeE)
 {
@@ -15,25 +15,25 @@ Form::Form(const std::string name, const int gradeS, const int gradeE) : _name(n
 
 	_signed = false;
 
-	std::cout << bGREEN << "Constructor (default) called - Form " << RESET << std::endl;
+	std::cout << bGREEN << "Form - Constructor " << RESET << "(name: " << _name << ", gradeSign: " << _gradeSign << ", gradeExec: " << _gradeExec << ")" << std::endl;
 }
 
 Form::Form ( const Form &copy ) : _name(copy._name), _gradeSign(copy._gradeSign), _gradeExec(copy._gradeExec)
 {
     *this = copy;
-	std::cout << bGREEN << "Constructor (copy) called - Form " << RESET << std::endl;
+	std::cout << bGREEN << "Form - Constructor (copy) " << RESET << "(name: " << _name << ", gradeSign: " << _gradeSign << ", gradeExec: " << _gradeExec << ")" << std::endl;
 }
 
 Form &Form::operator=( const Form &autre )
 {
 	_signed = autre.getSigned();
-    std::cout << bBLUE << "Copy assignment operator called - Form" << RESET << std::endl;
+    std::cout << bBLUE << "Form - Copy assignment operator " << RESET << std::endl;
     return (*this);
 }
 
 Form::~Form()
 {
-    std::cout << bRED << "Destructor called - Form " << RESET << std::endl;
+    std::cout << bRED << "Form - Destructor " << RESET << "(name: " << _name << ", gradeSign: " << _gradeSign << ", gradeExec: " << _gradeExec << ")" << std::endl;
 }
 
 
@@ -92,9 +92,11 @@ const char * Form::GradeTooLowException::what() const throw()
 
 
 
+
+
 //surcharge doperateur global
 std::ostream &operator<<(std::ostream &o, Form const &i)
 {
-	o << i.getName() << ", signed " << i.getSigned() << ", gradeS " << i.getGradeS() << ", gradeE " << i.getGradeE() << "." << std::endl;
+	o << i.getName() << ": signed " << i.getSigned() << ", required grade to sign form " << i.getGradeS() << ", required grade to execute form (not used in ex01) " << i.getGradeE() << "." << std::endl;
 	return o;
 }
