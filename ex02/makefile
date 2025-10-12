@@ -11,9 +11,9 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 SRCS = AForm.cpp \
 	Bureaucrat.cpp \
 	main.cpp \
-	PresidentialPardonForm.cpp \
-	RobotomyRequestForm.cpp \
 	ShrubberyCreationForm.cpp \
+	RobotomyRequestForm.cpp \
+	PresidentialPardonForm.cpp \
 
 #creation d'objets a partir des fichiers sources
 OBJS = $(SRCS:.cpp=.o)

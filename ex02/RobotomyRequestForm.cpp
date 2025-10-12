@@ -1,37 +1,58 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() {}
+RobotomyRequestForm::RobotomyRequestForm() : AForm() {}
 
-RobotomyRequestForm::RobotomyRequestForm(std::string target) : _gradeExec(45), _gradeSign(72)
-{
-	(void)_gradeExec;
-	(void)_gradeSign;
-	std::cout << "Brrrr... dzzzz... *drilling noises*" << std::endl;
-	if (std::rand() % 2)
-        std::cout << target << " has been robotomized successfully!" << std::endl;
-    else
-        std::cout << "The robotomy failed on " << target << "..." << std::endl;
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm("RobotomyRequestForm", 72, 45), _target(target) {}
 
-}
-
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy)
-{
-	*this = copy;
-	std::cout << bGREEN << "Constructor (copy) called - RobotomyRequestForm " << RESET << std::endl;
-}
+RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &copy) : AForm(copy) {}
 
 RobotomyRequestForm &RobotomyRequestForm::operator=( const RobotomyRequestForm &autre )
 {
-	_gradeExec = autre._gradeExec;
-	_gradeSign = autre._gradeSign;
-    std::cout << bBLUE << "Copy assignment operator called - RobotomyRequestForm" << RESET << std::endl;
+	(void)autre;
+    std::cout << bBLUE << "RobotomyRequestForm - Copy assignment operator= " << RESET << std::endl;
     return (*this);
 }
 
 RobotomyRequestForm::~RobotomyRequestForm()
 {}
 
-AForm* RobotomyRequestForm::clone() const
+
+
+
+
+
+void RobotomyRequestForm::execute(Bureaucrat const &executor) const
 {
-	return new RobotomyRequestForm(*this);
+	if (getSigned() == 0)
+		throw FormNotSignedException();
+	if (executor.getGrade() > getGradeE())
+		throw GradeTooLowException();
+
+	std::cout << "Brrrr... dzzzz... *drilling noises*....... ";
+	if (std::rand() % 2)
+        std::cout << _target << " has been robotomized successfully!" << std::endl;
+    else
+        std::cout << "The robotomy failed on " << _target << "..." << std::endl;
+}
+
+
+
+
+
+
+
+
+
+
+//getter
+std::string RobotomyRequestForm::getTarget() const
+{
+	return _target;
+}
+
+//surcharge doperateur global
+std::ostream &operator<<(std::ostream &o, RobotomyRequestForm const &i)
+{
+	o << "Robotomy: target " << i.getTarget() << ", name " << i.getName() << ", signed " << i.getSigned() << ", required grade to be executed: " << i.getGradeE() << ", required grade to be signed: " << i.getGradeS() << std::endl;
+	return o;
 }

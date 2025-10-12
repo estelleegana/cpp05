@@ -1,13 +1,34 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm() {}
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm(), _target("none") {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : _gradeExec(137), _gradeSign(145)
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm("ShrubberyCreationForm", 145, 137), _target(target) {}
+
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy) : AForm(copy) {}
+
+ShrubberyCreationForm &ShrubberyCreationForm::operator=( const ShrubberyCreationForm &autre )
 {
-	(void)_gradeExec;
-	(void)_gradeSign;
+	(void)autre;
+    std::cout << bBLUE << "ShrubberyCreationForm - Copy assignment operator= " << RESET << std::endl;
+    return (*this);
+}
 
-	std::string filename = target + "_shrubbery";
+ShrubberyCreationForm::~ShrubberyCreationForm()
+{}
+
+
+
+
+
+
+void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
+{
+	if (getSigned() == 0)
+		throw FormNotSignedException();
+	if (executor.getGrade() > getGradeE())
+		throw GradeTooLowException();
+
+	std::string filename = _target + "_shrubbery";
 	std::ofstream fichier(filename.c_str());
 	for (int i = 0; i < 2; i++)
 	{
@@ -22,25 +43,22 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : _gradeExec(13
 	fichier.close();
 }
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &copy)
+
+
+
+
+
+
+
+//getter
+std::string ShrubberyCreationForm::getTarget() const
 {
-	*this = copy;
-	std::cout << bGREEN << "Constructor (copy) called - ShrubberyCreationForm " << RESET << std::endl;
+	return _target;
 }
 
-ShrubberyCreationForm &ShrubberyCreationForm::operator=( const ShrubberyCreationForm &autre )
+//surcharge doperateur global
+std::ostream &operator<<(std::ostream &o, ShrubberyCreationForm const &i)
 {
-	_gradeExec = autre._gradeExec;
-	_gradeSign = autre._gradeSign;
-    std::cout << bBLUE << "Copy assignment operator called - ShrubberyCreationForm" << RESET << std::endl;
-    return (*this);
-}
-
-
-ShrubberyCreationForm::~ShrubberyCreationForm()
-{}
-
-AForm* ShrubberyCreationForm::clone() const
-{
-	return new ShrubberyCreationForm(*this);
+	o << "Shrubbery: target " << i.getTarget() << ", name " << i.getName() << ", signed " << i.getSigned() << ", required grade to be executed: " << i.getGradeE() << ", required grade to be signed: " << i.getGradeS() << std::endl;
+	return o;
 }

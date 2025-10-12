@@ -1,32 +1,48 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm() {}
+PresidentialPardonForm::PresidentialPardonForm() : AForm() {}
 
-PresidentialPardonForm::PresidentialPardonForm(std::string target) : _gradeExec(5), _gradeSign(25)
-{
-	(void)_gradeExec;
-	(void)_gradeSign;
-	std::cout << target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
-}
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("Presidential", 25, 5), _target(target) {}
 
-PresidentialPardonForm::PresidentialPardonForm ( const PresidentialPardonForm &copy )
-{
-    *this = copy;
-	std::cout << bGREEN << "Constructor (copy) called - PresidentialPardonForm " << RESET << std::endl;
-}
+PresidentialPardonForm::PresidentialPardonForm ( const PresidentialPardonForm &copy ) : AForm(copy) {}
 
 PresidentialPardonForm &PresidentialPardonForm::operator=( const PresidentialPardonForm &autre )
 {
-	_gradeExec = autre._gradeExec;
-	_gradeSign = autre._gradeSign;
-    std::cout << bBLUE << "Copy assignment operator called - PresidentialPardonForm" << RESET << std::endl;
+	(void)autre;
+    std::cout << bBLUE << "PresidentialPardonForm - Copy assignment operator called= " << RESET << std::endl;
     return (*this);
 }
 
 PresidentialPardonForm::~PresidentialPardonForm()
 {}
 
-AForm* PresidentialPardonForm::clone() const
+
+
+
+
+void PresidentialPardonForm::execute(Bureaucrat const &executor) const
 {
-	return new PresidentialPardonForm(*this);
+	if (getSigned() == 0)
+		throw FormNotSignedException();
+	if (executor.getGrade() > getGradeE())
+		throw GradeTooLowException();
+		
+	std::cout << _target << " has been pardoned by Zaphod Beeblebrox." << std::endl;
+}
+
+
+
+
+
+
+
+std::string PresidentialPardonForm::getTarget() const
+{
+	return _target;
+}
+
+std::ostream &operator<<(std::ostream &o, PresidentialPardonForm const &i)
+{
+	o << "Robotomy: target " << i.getTarget() << ", name " << i.getName() << ", signed " << i.getSigned() << ", required grade to be executed: " << i.getGradeE() << ", required grade to be signed: " << i.getGradeS() << std::endl;
+	return o;
 }

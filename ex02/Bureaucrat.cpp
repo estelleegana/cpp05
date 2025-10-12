@@ -1,8 +1,11 @@
 #include "Bureaucrat.hpp"
 
 //constr & destr
-Bureaucrat::Bureaucrat()
-{}
+Bureaucrat::Bureaucrat() : _name("default"), _grade(150)
+{
+	std::cout << bGREEN << "Bureaucrat - Constructor default " << RESET << "(name: " << _name << ", grade: " << _grade << ")" << std::endl;
+
+}
 
 Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
@@ -12,25 +15,26 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 		throw GradeTooHighException();
 	else if (grade > 150)
 		throw GradeTooLowException();
-	std::cout << bGREEN << "Constructor called - Bureaucrat " << RESET << "(name : " << _name << ", grade : " << _grade << ")" << std::endl;
+	
+	std::cout << bGREEN << "Bureaucrat - Constructor " << RESET << "(name: " << _name << ", grade: " << _grade << ")" << std::endl;
 }
 
-Bureaucrat::Bureaucrat ( const Bureaucrat &copy )
+Bureaucrat::Bureaucrat (const Bureaucrat  &copy ) : _name(copy.getName())
 {
-    *this = copy;
-	std::cout << bGREEN << "Constructor (copy) called - Bureaucrat " << RESET << std::endl;
+	*this = copy;
+    std::cout << bGREEN << "Bureaucrat - Constructor (copy) " << RESET << "(name: " << _name << ", grade: " << _grade << ")" << std::endl;
 }
 
 Bureaucrat &Bureaucrat::operator=( const Bureaucrat &autre )
 {
 	_grade = autre._grade;
-    std::cout << bBLUE << "Copy assignment operator called - Bureaucrat" << RESET << std::endl;
+    std::cout << bBLUE << "Bureaucrat - Copy assignment operator= " << RESET << std::endl;
     return (*this);
 }
 
 Bureaucrat::~Bureaucrat()
 {
-    std::cout << bRED << "Destructor called - Bureaucrat " << RESET << std::endl;
+    std::cout << bRED << "Bureaucrat - Destructor " << RESET << "(name: " << _name << ", grade: " << _grade << ")" << std::endl;
 }
 
 
@@ -85,13 +89,13 @@ void Bureaucrat::executeForm(AForm const &form) const
 {
 	try
 	{
-        form.execute(*this);
-        std::cout << this->getName() << " executed " << form.getName() << std::endl;
-    }
+		form.execute(*this);
+		std::cout << this->getName() << " executed " << form.getName() << std::endl;
+	}
 	catch (std::exception &e)
 	{
-        std::cout << this->getName() << " couldn’t execute " << form.getName() << " because " << e.what() << std::endl;
-    }
+		std::cout << this->getName() << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
+	}
 }
 		
 

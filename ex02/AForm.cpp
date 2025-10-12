@@ -2,7 +2,7 @@
 
 AForm::AForm() : _name("default"), _signed(false), _gradeSign(0), _gradeExec(0)
 {
-	std::cout << bGREEN << "Constructor (default no param) called - AForm " << RESET << std::endl;
+	std::cout << bGREEN << "AForm - Constructor (default) " << RESET << "(name: " << _name << ", gradeSign: " << _gradeSign << ", gradeExec: " << _gradeExec << ")" << std::endl;
 }
 
 AForm::AForm(const std::string name, const int gradeS, const int gradeE) : _name(name), _gradeSign(gradeS), _gradeExec(gradeE)
@@ -14,25 +14,25 @@ AForm::AForm(const std::string name, const int gradeS, const int gradeE) : _name
 
 	_signed = false;
 
-	std::cout << bGREEN << "Constructor (default) called - AForm " << RESET << std::endl;
+	std::cout << bGREEN << "AForm - Constructor " << RESET << "(name: " << _name << ", gradeSign: " << _gradeSign << ", gradeExec: " << _gradeExec << ")" << std::endl;
 }
 
 AForm::AForm ( const AForm &copy ) : _name(copy._name), _gradeSign(copy._gradeSign), _gradeExec(copy._gradeExec)
 {
     *this = copy;
-	std::cout << bGREEN << "Constructor (copy) called - AForm " << RESET << std::endl;
+	std::cout << bGREEN << "AForm - Constructor (copy) " << RESET << "(name: " << _name << ", gradeSign: " << _gradeSign << ", gradeExec: " << _gradeExec << ")" << std::endl;
 }
 
 AForm &AForm::operator=( const AForm &autre )
 {
 	_signed = autre.getSigned();
-    std::cout << bBLUE << "Copy assignment operator called - AForm" << RESET << std::endl;
+    std::cout << bBLUE << "Copy assignment operator=" << RESET << std::endl;
     return (*this);
 }
 
 AForm::~AForm()
 {
-    std::cout << bRED << "Destructor called - AForm " << RESET << std::endl;
+    std::cout << bRED << "AForm - Destructor " << RESET << "(name: " << _name << ", gradeSign: " << _gradeSign << ", gradeExec: " << _gradeExec << ")" << std::endl;
 }
 
 
@@ -82,13 +82,6 @@ void AForm::beSigned(Bureaucrat const &bubu)
 		throw GradeTooLowException();
 }
 
-void AForm::execute(Bureaucrat const & executor) const
-{
-	if (executor.getGrade() < 1)
-		throw FormNotSignedException();
-	if (executor.getGrade() > _gradeExec)
-		throw GradeTooLowException();
-}
 
 
 
