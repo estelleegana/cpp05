@@ -12,6 +12,14 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
+enum formtype
+{
+	TYPE_SHRUB,//0
+	TYPE_ROBO,//1
+	TYPE_PRESIDENT,//2
+	TYPE_INVALID,//3
+};
+
 class AForm;
 
 class Intern
@@ -25,10 +33,4 @@ class Intern
 
 		//fonction membre
 		AForm *makeForm(std::string formname, std::string target);
-
-		//exceptions
-		class FormDoesntExist : public std::exception
-		{
-			virtual const char * what() const throw();
-		};
 };
