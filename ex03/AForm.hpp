@@ -33,12 +33,12 @@ class AForm
 		int getGradeS() const;
 		int getGradeE() const;
 
-		//classe abstraite (virtual .. = 0)
-		virtual AForm *clone() const = 0;
+		// //classe abstraite (virtual .. = 0)
+		// virtual AForm *clone() const = 0;
 
 		//fonctions membres
 		void beSigned(Bureaucrat const &bubu);
-		void execute(Bureaucrat const & executor) const;
+		virtual void execute(Bureaucrat const & executor) const = 0;
 
 		//exceptions
 		class GradeTooHighException : public std::exception

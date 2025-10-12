@@ -7,11 +7,19 @@
 class PresidentialPardonForm : public AForm
 {
 	private:
-		int	_gradeExec;
-		int	_gradeSign;
+		std::string _target;
 	public:
+		PresidentialPardonForm();
 		PresidentialPardonForm(std::string target);
+		PresidentialPardonForm(const PresidentialPardonForm &copy);
+		PresidentialPardonForm &operator=(const PresidentialPardonForm &autre);
 		~PresidentialPardonForm();
 
-		AForm* clone() const;
+		void execute(Bureaucrat const &executor) const;
+
+		std::string getTarget() const;
 };
+
+
+//surcharge d'operateur global
+std::ostream &operator<<(std::ostream &o, PresidentialPardonForm const &i);
